@@ -120,6 +120,8 @@ The `.json` file is where you map buttons to actions.
       "params": { "url": "https://github.com" }
     }
   }
+```
+
 ---
 
 ## Autostart on Boot (Systemd)
