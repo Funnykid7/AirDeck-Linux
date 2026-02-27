@@ -1,0 +1,18 @@
+{
+    "U": {
+        "type": "command",
+        "value": "systemctl poweroff"
+    },
+    "L": {
+        "type": "command",
+        "value": "systemctl reboot"
+    },
+    "D": {
+        "type": "command",
+        "value": "x-terminal-emulator -e bash -c 'sudo apt update -y && sudo apt full-upgrade -y; exec bash'"
+    },
+    "R": {
+        "type": "website",
+        "value": "https://downloads.khinsider.com/game-soundtracks/album/the-legend-of-zelda-skyward-sword-expanded"
+    }
+}
