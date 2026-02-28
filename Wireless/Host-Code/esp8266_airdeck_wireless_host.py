@@ -6,7 +6,7 @@ from pynput.keyboard import Controller, Key
 
 keyboard = Controller()    
 
-CONFIG_FILE = 'arduino_streamdeck_config.json'
+CONFIG_FILE = 'esp8266_airdeck_wireless_config.json'
 UDP_IP = "0.0.0.0" # Listens on all available network interfaces
 UDP_PORT = 4210
 

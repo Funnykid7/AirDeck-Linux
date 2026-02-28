@@ -12,9 +12,9 @@ import threading
 from pynput.keyboard import Controller, Key
 
 # --- Configuration File Handling ---
-CONFIG_FILE = 'arduino_streamdeck_config.json'
+CONFIG_FILE = 'arduino_airdeck_wired_config.json'
 DEFAULT_CONFIG = {
-  "serial_port": "/dev/ttyACM0", # Default, check yours with 'ls /dev/tty*'
+  "serial_port": "/dev/ttyACM0", 
   "baud_rate": 9600,
   "mappings": {
     "U": {"type": "key_press", "params": { "key": "up" }},
