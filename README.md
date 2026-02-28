@@ -76,7 +76,7 @@ The `.json` file is where you map buttons to actions.
 | `text` | Types text into active window | `"sudo apt update"` |
 | `key` | Presses a keyboard key | `"space"`, `"enter"`, `"up"` |
 
-### Example Configuration
+### Example Configuration For ESP8266
 ```json
 {
     "U": {
@@ -85,7 +85,7 @@ The `.json` file is where you map buttons to actions.
     },
     "L": {
         "type": "website",
-        "value": "[https://github.com](https://github.com)"
+        "value": "https://github.com"
     },
     "D": {
         "type": "command",
@@ -96,6 +96,30 @@ The `.json` file is where you map buttons to actions.
         "value": "space"
     }
 }
+```
+### Example Configuration For Arduino
+```json
+{
+  "serial_port": "/dev/ttyACM0",
+  "baud_rate": 9600,
+  "mappings": {
+    "U": {
+      "type": "key_press",
+      "params": { "key": "up" }
+    },
+    "L": {
+      "type": "run_command",
+      "params": { "command": "lxterminal -e \"bash -c 'fastfetch; exec bash'\"" }
+    },
+    "D": {
+      "type": "type_text",
+      "params": { "text": "Default sentence.\nEdit config to change!\n" }
+    },
+    "R": {
+      "type": "open_url",
+      "params": { "url": "https://github.com" }
+    }
+  }
 ```
 
 ---

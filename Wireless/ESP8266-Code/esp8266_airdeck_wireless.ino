@@ -4,7 +4,7 @@
 // --- Configuration ---
 const char* ssid = "House of GUCCI_2G";
 const char* password = "oldtownroad";
-const char* targetIP = "192.168.0.50"; // Enter your Pi 5's local IP address here
+const char* targetIP = "192.168.0.50"; // Enter your computers's local IP address here
 const int targetPort = 4210;
 
 // Pin definitions for ESP8266 (e.g., NodeMCU or Wemos D1 Mini)
