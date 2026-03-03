@@ -21,6 +21,6 @@ env/
 .DS_Store
 Thumbs.db
 
-# Logs or temporary files (optional, adjust if needed)
+
 # /tmp/arduino_log.txt
 # button_log.txt
