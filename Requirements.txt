@@ -1,0 +1,11 @@
+# AirDeck-Linux Dependencies
+# Install using: pip install -r requirements.txt
+
+# For capturing global keystrokes and simulating input
+pynput==1.7.7
+
+# For handling the JSON configuration files
+json5==0.9.25
+
+# Optional: if you plan to add mDNS/Zero-conf discovery later
+# zeroconf==0.131.0
