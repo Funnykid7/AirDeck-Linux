@@ -2,9 +2,9 @@
 #include <WiFiUdp.h>
 
 // --- Configuration ---
-const char* ssid = "House of GUCCI_2G";
-const char* password = "oldtownroad";
-const char* targetIP = "192.168.0.50"; // Enter your computers's local IP address here
+const char* ssid = "ssid here";
+const char* password = "passwd here";
+const char* targetIP = "IP here"; // Enter your computers's local IP address here
 const int targetPort = 4210;
 
 // Pin definitions for ESP8266 (e.g., NodeMCU or Wemos D1 Mini)
