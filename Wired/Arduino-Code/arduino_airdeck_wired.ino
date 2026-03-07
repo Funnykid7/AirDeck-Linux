@@ -1,5 +1,4 @@
 // Arduino code to read 4 buttons and send press/release signals over Serial.
-// Designed for use with the Raspberry Pi Stream Deck Python script.
 
 // Define the pins for the buttons (connected to ground when pressed)
 const int button1Pin = 2; // Sends U/u
