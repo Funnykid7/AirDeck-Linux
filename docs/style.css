@@ -451,6 +451,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-shrink: 0;
 }
 
+.step-body { min-width: 0; }
+
 .step-title {
   font-family: 'JetBrains Mono', monospace;
   font-size: 1rem;
@@ -474,7 +476,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border: 1px solid var(--border);
   border-left: 3px solid var(--cyan);
   border-radius: var(--radius-sm);
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .code-block pre {
@@ -694,6 +696,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.5rem;
+  min-width: 0;
 }
 
 .systemd-num {
@@ -799,6 +802,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  body { overflow-x: hidden; }
+  .container { overflow-x: hidden; }
+
   .hero {
     grid-template-columns: 1fr;
     padding: 3rem 1.25rem;
@@ -830,6 +836,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 @media (max-width: 480px) {
   .hero-heading { font-size: 2.75rem; }
+  .code-block pre { font-size: .74rem; }
+  .config-body    { font-size: .74rem; }
   .hero-actions { flex-direction: column; }
   .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
   .contribute-actions { flex-direction: column; align-items: stretch; }
