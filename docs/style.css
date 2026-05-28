@@ -805,6 +805,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   body { overflow-x: hidden; }
   .container { overflow-x: hidden; }
 
+  .code-block pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+    padding-right: 1.25rem;
+  }
+  .code-block .copy-btn {
+    position: static;
+    display: block;
+    margin: .5rem .75rem .75rem auto;
+  }
+
   .hero {
     grid-template-columns: 1fr;
     padding: 3rem 1.25rem;
