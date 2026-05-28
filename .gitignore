@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.pyw
 
 # Virtual environment
 venv/
@@ -10,17 +11,25 @@ env/
 .env/
 *.env
 
-# IDE / Editor specific files
+# IDE / Editor
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+*.orig
+
+# Claude Code
+.claude/
 
 # OS generated files
 .DS_Store
+.DS_Store?
+._*
 Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
 
-
-# /tmp/arduino_log.txt
-# button_log.txt
+# Logs
+*.log
+logs/

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AirDeck - Wireless &amp; Wired Macro Pad for Linux</title>
+  <meta name="description" content="Transform any Arduino or ESP8266 into a fully programmable macro pad for Linux. Map buttons to shell commands, key presses, text snippets, and URLs." />
+  <meta property="og:title" content="AirDeck - Macro Pad for Linux" />
+  <meta property="og:description" content="Open-source macro pad tool for Linux. Wired Arduino or wireless ESP8266. Fully configurable via JSON." />
+  <meta property="og:url" content="https://funnykid7.github.io/AirDeck-Linux/" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2309090f'/><text x='4' y='24' font-size='22' font-family='monospace' fill='%2300e5ff'>A</text></svg>" />
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="#" class="nav-logo">Air<span>Deck</span></a>
+  <div class="nav-links">
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#install" class="nav-link">Install</a>
+    <a href="https://github.com/Funnykid7/AirDeck-Linux" target="_blank" rel="noopener" class="nav-cta">
+      <!-- GitHub icon -->
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────────────────── -->
+<main>
+<section class="hero reveal">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Open Source Macro Pad</p>
+    <h1 class="hero-heading">Air<span class="accent">Deck</span></h1>
+    <p class="hero-sub">Transform any Arduino or ESP8266 into a programmable macro pad for Linux. No soldering expertise required.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/Funnykid7/AirDeck-Linux" target="_blank" rel="noopener" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+        View on GitHub
+      </a>
+      <a href="#install" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+        Read the Docs
+      </a>
+    </div>
+  </div>
+
+  <!-- Right column: live config preview -->
+  <div class="hero-code-wrap">
+    <div class="hero-code-card">
+      <div class="code-titlebar">
+        <span class="code-dot red"></span>
+        <span class="code-dot amber"></span>
+        <span class="code-dot green"></span>
+        <span class="code-filename">config.json</span>
+      </div>
+      <div class="code-body">
+<span class="c-brace">{</span>
+  <span class="c-key">"U"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+    <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"command"</span><span class="c-colon">,</span>
+    <span class="c-key">"value"</span><span class="c-colon">:</span> <span class="c-cmd">"systemctl poweroff"</span>
+  <span class="c-brace">},</span>
+  <span class="c-key">"L"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+    <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"website"</span><span class="c-colon">,</span>
+    <span class="c-key">"value"</span><span class="c-colon">:</span> <span class="c-url">"https://github.com"</span>
+  <span class="c-brace">},</span>
+  <span class="c-key">"D"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+    <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"text"</span><span class="c-colon">,</span>
+    <span class="c-key">"value"</span><span class="c-colon">:</span> <span class="c-str">"sudo apt update"</span>
+  <span class="c-brace">},</span>
+  <span class="c-key">"R"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+    <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"key"</span><span class="c-colon">,</span>
+    <span class="c-key">"value"</span><span class="c-colon">:</span> <span class="c-str">"space"</span>
+  <span class="c-brace">}</span>
+<span class="c-brace">}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ──────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Features</p>
+      <h2 class="section-heading">Everything you need to automate your workflow</h2>
+      <p class="section-sub">Four physical buttons. Unlimited actions. Works over USB or Wi-Fi.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <!-- Wide top cell: Dual Mode -->
+      <div class="feat-cell wide reveal">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <path d="M12 18h.01"/>
+            <path d="M2 10h4M18 10h4"/>
+          </svg>
+        </div>
+        <div class="feat-content">
+          <p class="feat-title">Dual Mode Support</p>
+          <p class="feat-desc">Connect via USB with an Arduino Uno, Nano, or Mega over Serial, or go cable-free with a NodeMCU / D1 Mini over UDP Wi-Fi. Same JSON config format for both.</p>
+        </div>
+      </div>
+
+      <!-- Shell Commands -->
+      <div class="feat-cell glow reveal">
+        <div class="feat-icon" style="margin-bottom:.85rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"/>
+            <line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+        </div>
+        <p class="feat-title">Shell Commands</p>
+        <p class="feat-desc">Trigger any terminal command on button press. Reboot, run scripts, launch apps, or chain commands with <code style="font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#fca5a5">&&</code>.</p>
+      </div>
+
+      <!-- Automated Typing -->
+      <div class="feat-cell reveal">
+        <div class="feat-icon" style="margin-bottom:.85rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"/>
+          </svg>
+        </div>
+        <p class="feat-title">Automated Typing</p>
+        <p class="feat-desc">Send text strings or code snippets directly to your active window. Paste boilerplate, commands, or entire paragraphs with one press.</p>
+      </div>
+
+      <!-- Key Emulation -->
+      <div class="feat-cell reveal">
+        <div class="feat-icon" style="margin-bottom:.85rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+          </svg>
+        </div>
+        <p class="feat-title">Key Emulation</p>
+        <p class="feat-desc">Map buttons to any keyboard key: Space, Enter, F5, arrow keys, media controls. Works with any application that accepts keyboard input.</p>
+      </div>
+
+      <!-- Web Shortcuts -->
+      <div class="feat-cell glow reveal">
+        <div class="feat-icon" style="margin-bottom:.85rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </div>
+        <p class="feat-title">Web Shortcuts</p>
+        <p class="feat-desc">Launch any URL in your default browser instantly. One button can open your dashboard, a pull request, or a monitoring page.</p>
+      </div>
+
+      <!-- Systemd -->
+      <div class="feat-cell reveal">
+        <div class="feat-icon" style="margin-bottom:.85rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <p class="feat-title">Background Service</p>
+        <p class="feat-desc">Register AirDeck as a <code style="font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--cyan)">systemd</code> service and it starts automatically on every boot, with no terminal window required.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Hardware ───────────────────────────────────────────────── -->
+<section class="section" id="hardware" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-heading">Pick your connection</h2>
+      <p class="section-sub">Both modes use the same four-button wiring and the same JSON config format. Choose based on what you have.</p>
+    </div>
+
+    <div class="hw-grid reveal">
+
+      <!-- Wired -->
+      <div class="hw-card">
+        <span class="hw-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Wired
+        </span>
+        <p class="hw-card-title">Arduino via USB</p>
+        <ul class="hw-specs">
+          <li class="hw-spec"><span class="hw-spec-label">Controller</span><span class="hw-spec-value">Uno, Nano, or Mega</span></li>
+          <li class="hw-spec"><span class="hw-spec-label">Buttons</span><span class="hw-spec-value">4x Tactile Push Buttons</span></li>
+          <li class="hw-spec"><span class="hw-spec-label">Connection</span><span class="hw-spec-value">USB Type A to B</span></li>
+          <li class="hw-spec"><span class="hw-spec-label">Power</span><span class="hw-spec-value">Powered via USB</span></li>
+          <li class="hw-spec"><span class="hw-spec-label">Resistors needed</span><span class="hw-spec-value">None (pull-up built in)</span></li>
+        </ul>
+      </div>
+
+      <!-- Wireless -->
+      <div class="hw-card wireless">
+        <span class="hw-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>
+          Wireless
+        </span>
+        <p class="hw-card-title">ESP8266 via Wi-Fi</p>
+        <ul class="hw-specs">
+          <li class="hw-spec"><span class="hw-spec-label">Controller</span><span class="hw-spec-value">NodeMCU, D1 Mini, ESP-12</span></li>
+          <li class="hw-spec"><span class="hw-spec-label">Buttons</span><span class="hw-spec-value">4x Tactile Push Buttons</span></li>
+          <li class="hw-spec"><span class="hw-spec-label">Connection</span><span class="hw-spec-value">UDP over Wi-Fi</span></li>
+          <li class="hw-spec"><span class="hw-spec-label">Power</span><span class="hw-spec-value">USB or 3.3V Battery</span></li>
+          <li class="hw-spec"><span class="hw-spec-label">Resistors needed</span><span class="hw-spec-value">None (pull-up built in)</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Wiring note -->
+    <div class="reveal" style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:var(--elevated);border:1px solid var(--border);border-radius:var(--radius);font-size:.875rem;color:var(--muted);line-height:1.7;">
+      <strong style="color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.8rem;">Wiring:</strong>
+      Connect all button GND legs to a common GND rail. Signal legs go to pins 2-5 (Arduino) or D1-D4 (ESP8266).
+      Internal pull-up resistors are enabled in firmware - no external components needed.
+    </div>
+  </div>
+</section>
+
+<!-- ── Install ────────────────────────────────────────────────── -->
+<section class="section" id="install">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Installation</p>
+      <h2 class="section-heading">Up and running in three steps</h2>
+      <p class="section-sub">You need Python 3, a microcontroller, and the Arduino IDE. That's it.</p>
+    </div>
+
+    <div class="steps">
+
+      <!-- Step 1: Flash -->
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <p class="step-title">Download your kit and flash the firmware</p>
+          <p class="step-desc">Pick your connection type. Download the kit, open the <code style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cyan)">.ino</code> sketch in the Arduino IDE, and flash your board. For ESP8266, edit <code style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cyan)">ssid</code>, <code style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cyan)">password</code>, and <code style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cyan)">targetIP</code> before uploading.</p>
+
+          <div class="dl-grid">
+
+            <!-- Arduino Kit -->
+            <div class="dl-card">
+              <div>
+                <span class="hw-badge" style="margin-bottom:.75rem;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  Wired
+                </span>
+                <p class="feat-title" style="margin-bottom:.15rem;">Arduino Kit</p>
+                <p style="font-size:.78rem;color:var(--muted);">Uno, Nano, Mega via USB</p>
+              </div>
+              <button class="dl-btn dl-kit-btn" data-kit="wired">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Kit (3 files)
+              </button>
+              <div class="dl-files">
+                <button class="dl-file-chip"
+                  data-url="https://raw.githubusercontent.com/Funnykid7/AirDeck-Linux/main/Wired/Arduino-Code/arduino_airdeck_wired.ino"
+                  data-filename="arduino_airdeck_wired.ino">
+                  <svg class="dl-file-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span class="dl-filename">arduino_airdeck_wired.ino</span>
+                  <svg class="dl-dl-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="dl-file-chip"
+                  data-url="https://raw.githubusercontent.com/Funnykid7/AirDeck-Linux/main/Wired/Host-Code/arduino_airdeck_wired.py"
+                  data-filename="arduino_airdeck_wired.py">
+                  <svg class="dl-file-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span class="dl-filename">arduino_airdeck_wired.py</span>
+                  <svg class="dl-dl-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="dl-file-chip"
+                  data-url="https://raw.githubusercontent.com/Funnykid7/AirDeck-Linux/main/Wired/Host-Code/arduino_airdeck_wired_config.json"
+                  data-filename="arduino_airdeck_wired_config.json">
+                  <svg class="dl-file-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span class="dl-filename">arduino_airdeck_wired_config.json</span>
+                  <svg class="dl-dl-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ESP8266 Kit -->
+            <div class="dl-card wireless">
+              <div>
+                <span class="hw-badge" style="margin-bottom:.75rem;background:var(--cyan-dim);color:var(--cyan);border:1px solid rgba(0,229,255,.2);">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>
+                  Wireless
+                </span>
+                <p class="feat-title" style="margin-bottom:.15rem;">ESP8266 Kit</p>
+                <p style="font-size:.78rem;color:var(--muted);">NodeMCU, D1 Mini via Wi-Fi</p>
+              </div>
+              <button class="dl-btn dl-kit-btn" data-kit="wireless">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Kit (3 files)
+              </button>
+              <div class="dl-files">
+                <button class="dl-file-chip"
+                  data-url="https://raw.githubusercontent.com/Funnykid7/AirDeck-Linux/main/Wireless/ESP8266-Code/esp8266_airdeck_wireless.ino"
+                  data-filename="esp8266_airdeck_wireless.ino">
+                  <svg class="dl-file-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span class="dl-filename">esp8266_airdeck_wireless.ino</span>
+                  <svg class="dl-dl-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="dl-file-chip"
+                  data-url="https://raw.githubusercontent.com/Funnykid7/AirDeck-Linux/main/Wireless/Host-Code/esp8266_airdeck_wireless_host.py"
+                  data-filename="esp8266_airdeck_wireless_host.py">
+                  <svg class="dl-file-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span class="dl-filename">esp8266_airdeck_wireless_host.py</span>
+                  <svg class="dl-dl-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <button class="dl-file-chip"
+                  data-url="https://raw.githubusercontent.com/Funnykid7/AirDeck-Linux/main/Wireless/Host-Code/esp8266_airdeck_wireless_config.json"
+                  data-filename="esp8266_airdeck_wireless_config.json">
+                  <svg class="dl-file-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span class="dl-filename">esp8266_airdeck_wireless_config.json</span>
+                  <svg class="dl-dl-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Install -->
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <p class="step-title">Install Python dependencies</p>
+          <p class="step-desc">Install the required Python packages. <code style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cyan)">pynput</code> handles input injection and <code style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--cyan)">pyserial</code> handles the USB serial connection.</p>
+          <div class="code-block">
+            <pre><span class="prompt">$</span> <span class="cmd-text">pip install pynput pyserial</span>
+
+<span class="prompt"># Or install from the requirements file</span>
+<span class="prompt">$</span> <span class="cmd-text">pip install -r Requirements.txt</span></pre>
+            <button class="copy-btn" data-copy="pip install pynput pyserial">Copy</button>
+          </div>
+          <p class="step-desc" style="margin-top:.75rem;font-size:.8rem;">
+            <strong style="color:var(--text)">X11 vs Wayland:</strong> X11 gives full functionality. On Wayland, shell commands and web shortcuts work, but key emulation and text typing may be blocked by the display server's security model.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3: Run -->
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <p class="step-title">Run the host script</p>
+          <p class="step-desc">Place the host script and config JSON (downloaded in Step 01) in the same folder, then run the script. Edit the JSON to customize your button mappings.</p>
+          <div class="code-block">
+            <pre><span class="prompt"># Wired</span>
+<span class="prompt">$</span> <span class="cmd-text">python3 arduino_airdeck_wired.py</span>
+
+<span class="prompt"># Wireless</span>
+<span class="prompt">$</span> <span class="cmd-text">python3 esp8266_airdeck_wireless_host.py</span></pre>
+            <button class="copy-btn" data-copy="python3 arduino_airdeck_wired.py">Copy</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Configure ─────────────────────────────────────────────── -->
+<section class="section" id="configure" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Configuration</p>
+      <h2 class="section-heading">Map buttons to actions via JSON</h2>
+      <p class="section-sub">Edit the config file - no recompiling, no reflashing. Change it anytime and restart the script.</p>
+    </div>
+
+    <!-- Action type badges -->
+    <div class="action-types reveal">
+      <div class="action-badge">
+        <code>command</code>
+        <span>Run a terminal command</span>
+      </div>
+      <div class="action-badge">
+        <code>website</code>
+        <span>Open a URL in browser</span>
+      </div>
+      <div class="action-badge">
+        <code>text</code>
+        <span>Type text to active window</span>
+      </div>
+      <div class="action-badge">
+        <code>key</code>
+        <span>Press a keyboard key</span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="reveal" style="margin-top:2.5rem;">
+      <div class="tab-bar" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" data-tab="wireless">ESP8266 (Wireless)</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="wired">Arduino (Wired)</button>
+      </div>
+
+      <!-- Wireless config -->
+      <div class="tab-pane active" id="tab-wireless">
+        <div class="config-block">
+          <div class="code-titlebar">
+            <span class="code-dot red"></span>
+            <span class="code-dot amber"></span>
+            <span class="code-dot green"></span>
+            <span class="code-filename">esp8266_airdeck_wireless_config.json</span>
+          </div>
+          <div class="config-body">
+            <button class="copy-btn" data-copy='{"U":{"type":"command","value":"systemctl poweroff"},"L":{"type":"website","value":"https://github.com"},"D":{"type":"command","value":"x-terminal-emulator -e bash -c '\''sudo apt update && sudo apt upgrade; exec bash'\''"},"R":{"type":"key","value":"space"}}'>Copy</button>
+<span class="c-brace">{</span>
+    <span class="c-key">"U"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+        <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"command"</span><span class="c-colon">,</span>
+        <span class="c-key">"value"</span><span class="c-colon">:</span> <span class="c-cmd">"systemctl poweroff"</span>
+    <span class="c-brace">},</span>
+    <span class="c-key">"L"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+        <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"website"</span><span class="c-colon">,</span>
+        <span class="c-key">"value"</span><span class="c-colon">:</span> <span class="c-url">"https://github.com"</span>
+    <span class="c-brace">},</span>
+    <span class="c-key">"D"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+        <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"command"</span><span class="c-colon">,</span>
+        <span class="c-key">"value"</span><span class="c-colon">:</span> <span class="c-cmd">"x-terminal-emulator -e bash -c 'sudo apt update &amp;&amp; sudo apt upgrade'"</span>
+    <span class="c-brace">},</span>
+    <span class="c-key">"R"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+        <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"key"</span><span class="c-colon">,</span>
+        <span class="c-key">"value"</span><span class="c-colon">:</span> <span class="c-str">"space"</span>
+    <span class="c-brace">}</span>
+<span class="c-brace">}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wired config -->
+      <div class="tab-pane" id="tab-wired">
+        <div class="config-block">
+          <div class="code-titlebar">
+            <span class="code-dot red"></span>
+            <span class="code-dot amber"></span>
+            <span class="code-dot green"></span>
+            <span class="code-filename">arduino_airdeck_wired_config.json</span>
+          </div>
+          <div class="config-body">
+            <button class="copy-btn" data-copy='{"serial_port":"/dev/ttyACM0","baud_rate":9600,"mappings":{"U":{"type":"key_press","params":{"key":"up"}},"L":{"type":"run_command","params":{"command":"lxterminal"}},"D":{"type":"type_text","params":{"text":"Hello!"}},"R":{"type":"open_url","params":{"url":"https://github.com"}}}}'>Copy</button>
+<span class="c-brace">{</span>
+    <span class="c-key">"serial_port"</span><span class="c-colon">:</span> <span class="c-str">"/dev/ttyACM0"</span><span class="c-colon">,</span>
+    <span class="c-key">"baud_rate"</span><span class="c-colon">:</span> <span class="c-str">9600</span><span class="c-colon">,</span>
+    <span class="c-key">"mappings"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+        <span class="c-key">"U"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+            <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"key_press"</span><span class="c-colon">,</span>
+            <span class="c-key">"params"</span><span class="c-colon">:</span> <span class="c-brace">{</span> <span class="c-key">"key"</span><span class="c-colon">:</span> <span class="c-str">"up"</span> <span class="c-brace">}</span>
+        <span class="c-brace">},</span>
+        <span class="c-key">"L"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+            <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"run_command"</span><span class="c-colon">,</span>
+            <span class="c-key">"params"</span><span class="c-colon">:</span> <span class="c-brace">{</span> <span class="c-key">"command"</span><span class="c-colon">:</span> <span class="c-cmd">"lxterminal -e \"bash -c 'fastfetch; exec bash'\""</span> <span class="c-brace">}</span>
+        <span class="c-brace">},</span>
+        <span class="c-key">"D"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+            <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"type_text"</span><span class="c-colon">,</span>
+            <span class="c-key">"params"</span><span class="c-colon">:</span> <span class="c-brace">{</span> <span class="c-key">"text"</span><span class="c-colon">:</span> <span class="c-str">"Default sentence.\nEdit config to change!\n"</span> <span class="c-brace">}</span>
+        <span class="c-brace">},</span>
+        <span class="c-key">"R"</span><span class="c-colon">:</span> <span class="c-brace">{</span>
+            <span class="c-key">"type"</span><span class="c-colon">:</span> <span class="c-str">"open_url"</span><span class="c-colon">,</span>
+            <span class="c-key">"params"</span><span class="c-colon">:</span> <span class="c-brace">{</span> <span class="c-key">"url"</span><span class="c-colon">:</span> <span class="c-url">"https://github.com"</span> <span class="c-brace">}</span>
+        <span class="c-brace">}</span>
+    <span class="c-brace">}</span>
+<span class="c-brace">}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Autostart ──────────────────────────────────────────────── -->
+<section class="section" id="autostart">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-heading">Run on boot with systemd</h2>
+      <p class="section-sub">Register AirDeck as a service so it starts automatically. No terminal window needed after setup.</p>
+    </div>
+
+    <div class="systemd-steps reveal">
+
+      <div class="systemd-card">
+        <p class="systemd-num">Create</p>
+        <p class="systemd-title">Create the service file</p>
+        <p class="systemd-desc">Create a new service file in the systemd directory and paste your configuration with the correct script path.</p>
+        <div class="code-block">
+          <pre><span class="prompt">$</span> <span class="cmd-text">sudo nano /etc/systemd/system/airdeck.service</span></pre>
+          <button class="copy-btn" data-copy="sudo nano /etc/systemd/system/airdeck.service">Copy</button>
+        </div>
+      </div>
+
+      <div class="systemd-card">
+        <p class="systemd-num">Reload</p>
+        <p class="systemd-title">Reload daemon</p>
+        <p class="systemd-desc">Tell systemd to re-read its service definitions after creating or modifying the file.</p>
+        <div class="code-block">
+          <pre><span class="prompt">$</span> <span class="cmd-text">sudo systemctl daemon-reload</span></pre>
+          <button class="copy-btn" data-copy="sudo systemctl daemon-reload">Copy</button>
+        </div>
+      </div>
+
+      <div class="systemd-card">
+        <p class="systemd-num">Enable</p>
+        <p class="systemd-title">Enable and start</p>
+        <p class="systemd-desc">Enable the service to start at boot, then start it immediately without rebooting.</p>
+        <div class="code-block">
+          <pre><span class="prompt">$</span> <span class="cmd-text">sudo systemctl enable airdeck.service</span>
+<span class="prompt">$</span> <span class="cmd-text">sudo systemctl start airdeck.service</span></pre>
+          <button class="copy-btn" data-copy="sudo systemctl enable airdeck.service && sudo systemctl start airdeck.service">Copy</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Contribute ─────────────────────────────────────────────── -->
+<section class="section contribute" id="contribute">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="section-heading">Built by the community, for the community</h2>
+      <p class="contribute-sub">Found a bug? Have a feature idea? Want to add support for a new board? Contributions are welcome.</p>
+      <div class="contribute-actions">
+        <a href="https://github.com/Funnykid7/AirDeck-Linux/issues/new" target="_blank" rel="noopener" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          Open an Issue
+        </a>
+        <a href="https://github.com/Funnykid7/AirDeck-Linux" target="_blank" rel="noopener" class="btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          Contribute on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer">
+    <div class="footer-left">
+      <span class="footer-logo">Air<span>Deck</span></span>
+      <span class="footer-license">MIT License</span>
+    </div>
+    <a href="https://github.com/Funnykid7/AirDeck-Linux" target="_blank" rel="noopener" class="footer-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+      Funnykid7/AirDeck-Linux
+    </a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
