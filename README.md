@@ -1,7 +1,5 @@
 # AirDeck: Wireless & Wired Macro Pad for Linux
 
-**Website & Docs:** [funnykid7.github.io/AirDeck-Linux](https://funnykid7.github.io/AirDeck-Linux/)
-
 **AirDeck** is a lightweight, open-source tool that transforms microcontrollers into powerful, customizable macro pads. Map physical button presses to complex Linux actions like running shell commands, system power controls, automated typing, or web shortcuts.
 
 Whether you want a wired connection via an **Arduino Uno** or a wireless setup using an **ESP8266**, AirDeck provides a simple Python-based bridge to automate your workflow.
